@@ -1,14 +1,15 @@
-interface TempProps {
-    setCurrentPage: (page: string) => void;
-}
+import { useContext } from "react";
+import { PageContext } from "../App";
 
-export default function Welcome({ setCurrentPage }: TempProps) {
+export default function Welcome() {
+  const { setCurrentPage } = useContext(PageContext);
+
   return (
     <div>
       <h1>Welcome to the Expense Tracker App</h1>
       <p>Use the navigation to add and view your expenses.</p>
-      <button onClick={() => setCurrentPage('List')}>Go to List</button>
-      <button onClick={() => setCurrentPage('Add')}>Go to Add</button>
+      <button onClick={() => setCurrentPage('list')}>View Expenses</button>
+      <button onClick={() => setCurrentPage('add')}>Add Expense</button>
     </div>
   );
 }
