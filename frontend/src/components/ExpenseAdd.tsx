@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 interface ExpenseAddProps {
-  addExpense: (expense: ExpenseInput) => void;
+  addExpense: (expense: ExpenseInput) => Promise<void>;
 }
 
 const expenseSchema = z.object({
@@ -33,8 +33,8 @@ export default function ExpenseAdd({ addExpense }: ExpenseAddProps) {
     resolver: zodResolver(expenseSchema),
   });
 
-  const onSubmit = ({ description, payer, amount }: FormData) => {
-    addExpense({ description, payer, amount, date: new Date().toISOString() });
+  const onSubmit = async ({ description, payer, amount }: FormData) => {
+    await addExpense({ description, payer, amount, date: new Date().toISOString() });
     reset();
   };
 
