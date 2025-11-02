@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import "./App.css";
 import List from "./pages/List";
 import Welcome from "./pages/Welcome";
 import Add from "./pages/Add";

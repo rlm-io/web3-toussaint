@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav >
+    <nav className='flex flex-row w-screen shadow-lg justify-center p-4 bg-green-900 text-white'>
       <NavLink to="/" className={navlinkClassName('/')}>
         Home
       </NavLink>

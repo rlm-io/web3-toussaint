@@ -24,17 +24,19 @@ export default function Add() {
   };
 
   const handleResetData = async () => {
-    await sendApiRequestandHandleError('POST', 'expenses/reset');
-    navigate('/list');
+    await sendApiRequestandHandleError("POST", "expenses/reset");
+    navigate("/list");
   };
 
   return (
-    <div>
-      <h2>Add Expense</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-sm border">
+      <h3 className="text-lg font-semibold mb-4">Add New Expense</h3>
 
-      <ExpenseAdd addExpense={handleAddExpense} />
+      <ExpenseAdd
+        addExpense={handleAddExpense}
+        handleResetData={handleResetData}
+      />
       {error && <div>Error: {error}</div>}
-        <button onClick={handleResetData}>Reset Data</button>
     </div>
   );
 }
