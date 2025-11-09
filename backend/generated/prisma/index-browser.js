@@ -121,12 +121,27 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  bankAccount: 'bankAccount'
+};
+
 exports.Prisma.ExpenseScalarFieldEnum = {
   id: 'id',
-  date: 'date',
   description: 'description',
-  payer: 'payer',
-  amount: 'amount'
+  amount: 'amount',
+  date: 'date',
+  payerId: 'payerId'
+};
+
+exports.Prisma.TransferScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  date: 'date',
+  sourceId: 'sourceId',
+  targetId: 'targetId'
 };
 
 exports.Prisma.SortOrder = {
@@ -139,9 +154,16 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
-  Expense: 'Expense'
+  User: 'User',
+  Expense: 'Expense',
+  Transfer: 'Transfer'
 };
 
 /**
