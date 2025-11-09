@@ -5,11 +5,13 @@ const prisma = new PrismaClient();
 async function main() {
   const expenses = await prisma.expense.createMany({
     data: [
-      { date: '2025-01-16T00:00:00Z', description: 'Example expense #1 from Alice', payer: 'Alice', amount: 25.5 },
-      { date: '2025-01-15T00:00:00Z', description: 'Example expense #2 from Bob', payer: 'Bob', amount: 35 },
-      { date: '2025-01-15T00:00:00Z', description: 'Example expense #3 from Alice', payer: 'Alice', amount: 2 },
+      { id: 1, description: 'Coffee', amount: 3.5, payer: 'Alice' },
+      { id: 2, description: 'Groceries', amount: 45.0, payer: 'Bob' },
+      { id: 3, description: 'Internet Bill', amount: 60.0, payer: 'Charlie' },
     ],
+    skipDuplicates: true, // Skip duplicates based on unique constraints
   });
+  console.log(expenses);
 }
 
 main()

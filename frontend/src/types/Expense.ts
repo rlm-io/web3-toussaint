@@ -1,9 +1,10 @@
-export interface Expense {
-  id: string;
-  date: string;
+import type { Identifiable } from './Core';
+
+export interface ExpenseInput {
   description: string;
   payer: string;
   amount: number;
+  date: string; // ISO string
 }
 
-export type ExpenseInput = Omit<Expense, 'id'>
+export interface Expense extends ExpenseInput, Identifiable {}

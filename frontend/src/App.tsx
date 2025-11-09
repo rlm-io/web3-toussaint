@@ -1,56 +1,49 @@
-import { createContext, useState } from "react";
-import List from "./pages/List";
-import Welcome from "./pages/Welcome";
-import Add from "./pages/Add";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import Layout from "./pages/Layout";
+import { createContext, useState } from 'react';
+import Add from './pages/Add';
+import List from './pages/List';
+import Welcome from './pages/Welcome';
+import Layout from './pages/Layout';
+import { RouterProvider } from 'react-router/dom';
+import { createBrowserRouter } from 'react-router';
 
-const host = import.meta.env.VITE_API_URL || "http://unknown-api-url.com";
+const host = import.meta.env.VITE_API_URL;
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const PageContext = createContext<{
+  sendApiRequestandHandleError: (method: string, path: string, body?: unknown) => Promise<unknown>;
   error: string | null;
-  sendApiRequestandHandleError: <T = unknown>(
-    method: string,
-    path: string,
-    body?: unknown
-  ) => Promise<T | undefined>;
 }>({
-  error: "context not defined",
   sendApiRequestandHandleError: async () => {
-    throw new Error("context not defined");
+    throw new Error('sendApiRequestandHandleError not implemented');
   },
+  error: null,
 });
 
 function App() {
   const [error, setError] = useState<string | null>(null);
 
-  const sendApiRequestandHandleError = async <T = unknown>(
-    method: string = "GET",
-    path: string,
-    body?: unknown
-  ): Promise<T | undefined> => {
+  const sendApiRequestandHandleError = async (method: string = 'GET', path: string, body?: unknown) => {
     try {
-      
       const response = await fetch(`${host}/api/${path}`, {
         method: method,
-        headers: body ? { "Content-Type": "application/json" } : {},
+        headers: body ? { 'Content-Type': 'application/json' } : {},
         body: body ? JSON.stringify(body) : null,
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json() as T;
+      setError(null);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("API request failed:", error);
-      setError(error instanceof Error ? error.message : "An error occurred");
+      console.error('API request failed:', error);
+      setError(error instanceof Error ? error.message : 'An error occurred');
     }
   };
 
   const context = {
-    error,
     sendApiRequestandHandleError,
+    error,
   };
 
   const router = createBrowserRouter([

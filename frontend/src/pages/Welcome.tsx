@@ -1,11 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router';
 
-export default function Welcome() {
+const Welcome = () => {
   return (
     <div className="text-center">
-      <h1 className="text-5xl">Welcome to the Expense Tracker App</h1>
+      <h1 className="text-5xl">Welcome to the Expense Tracker</h1>
       <div className="text-center py-12">
-        Use the navigation to add and view your expenses.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
       </div>
       <div className="flex flex-row gap-4 justify-center">
         <button className="bg-green-800 text-white hover:bg-green-700 rounded-full px-6">
@@ -17,4 +18,6 @@ export default function Welcome() {
       </div>
     </div>
   );
-}
+};
+
+export default Welcome;

@@ -16,7 +16,7 @@ function getAllExpenses() {
 }
 
 function addExpense(expense) {
-  const operation = () => prisma.expense.create({data: expense});
+  const operation = () => prisma.expense.create({ data: expense });
   return queryDatabaseAndDisconnect(operation);
 }
 
